@@ -1,6 +1,7 @@
 # NYYT
 
 ###### The input data files are in Parquet format.
+###### The data files are from Oct 2022 to Sept 2023 (Source: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 ###### To query these files, Apache Drill has been used. This can be used either in distributed mode or embedded mode. Make sure enough memory is configured that can handle input data.
 
 Uppload all the data files in a specific directory inside Drill installation.
