@@ -45,6 +45,23 @@ Now `DATA_DIRECTORY` can be treated as a single table which can be used to query
     
 11.  Time Series Analysis: Analyze the time series data for trip counts, fare amounts, or tip amounts, and identify any trends or seasonality
 
-        TBD
+        Time series analysis of Trip Counts:
+             Total trip counts each hour of the day in the last 1 year:
+     
+                 select hour(tpep_pickup_datetime) as hourOfDay,count(hour(tpep_pickup_datetime)) as noOfTrips from dfs.`/Users/abhishek/apps/drill/apache-drill-                           1.21.1/sample-data/database/YTD` group by hourOfDay order by hourOfDay;
+
+     
+             Total trip counts each month:
+     
+                 select month(tpep_pickup_datetime) as _month, count(month(tpep_pickup_datetime)) as totalTripsByMonth from dfs.`/Users/abhishek/apps/drill/apache-drill-                   1.21.1/sample-data/database/YTD` group by _month order by _month;
    
-  
+         Time series analysis of fare amount:
+            Total fare amount each hour of the day in the last 1 year:
+     
+                 select hour(tpep_pickup_datetime) as hourOfDay,cast(sum(fare_amount) as DECIMAL)as totalFareAmt from dfs.`/Users/abhishek/apps/drill/apache-drill-                        1.21.1/sample-data/database/YTD` group by hourOfDay order by hourOfDay;
+
+         Time series analysis of tip amount:
+             Hour of the day where cab drivers got the maximum tips:
+                 select hour(tpep_pickup_datetime) as hourOfDay,cast(sum(tip_amount) as DECIMAL)as totalTipAmt from dfs.`/Users/abhishek/apps/drill/apache-drill-1.21.1/sample-data/database/YTD` group by hourOfDay order by totalTipAmt desc limit 1
+
+     
